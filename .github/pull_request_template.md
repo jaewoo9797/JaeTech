@@ -1,11 +1,3 @@
----
-name: "🔀 Pull Request"
-about: "새로운 기능 추가 또는 버그 수정 PR을 작성하세요."
-title: "[PR]: "
-labels: ["pull request"]
-assignees: ["jaewoo9797"]
----
-
 ## 🛠 Describe your changes
 - (구현한 내용 요약)
 

@@ -40,3 +40,37 @@ Backend : SpringBoot, MySQL, Docker
 Frontend : Thymleaf, js, ajax
 
 CI/CD : AWS, Jenkins,
+
+
+## 데이터베이스 설계
+- ERD
+- 주요 테이블 및 관계 정의
+- 데이터 정규화 고려 사항
+- 쿼리 최적화 전략
+- 인덱싱 및 캐싱 전략
+
+### ERD
+<p text-align="center">
+    <img src="images/초기_데이터베이스설계.png" alt="ERD" object-fit="cover" width="800px" height="600px"/>
+</p>
+
+### 각 테이블 및 관계 정의
+- Users 테이블
+  - 기본 키 : `user_id`
+- category 테이블
+  - 기본 키 : `category_id`
+  - 설명 : 게시글의 분류 정보를 저장합니다.
+- article 테이블
+  - 기본 키 : `article_id`
+  - 외래 키 : 
+    - `users.user_id` : 해당 게시글을 작성한 사용자를 참조합니다.
+    - `category.category_id` : 게시글이 속한 카테고리를 참조합니다.
+  - 설명 : 게시글의 제목, 내용, 작성일 등을 저장합니다.
+- comment 테이블
+  - 기본 키 : `comment_id`
+  - 외래 키 : 
+    - `article.article_id` : 댓글이 달린 게시글을 참조합니다.
+    - `users.user_id` : 댓글을 작성한 사용자를 참조합니다.
+    - `parent_id` : `comment.comment_id` 대댓글(답글) 구현을 위한 자기 참조 키로, 부모 댓글을 가리킵니다.
+  - 설명 : 게시글에 달린 댓글 및 대댓글 정보를 저장합니다.
+

@@ -1,6 +1,7 @@
 package com.jaetech.article.entity;
 
 import com.jaetech.category.entity.Category;
+import com.jaetech.common.BaseEntity;
 import com.jaetech.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,13 +15,13 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "article")
-public class Article {
+public class Article extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 45)
     private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")

@@ -1,5 +1,6 @@
 package com.jaetech.user.entity;
 
+import com.jaetech.common.BaseEntity;
 import com.jaetech.user.entity.enums.UserRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,19 +13,20 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 45)
     private String nick;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 45)
     private String email;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 45)
     private UserRole role;
 
 }

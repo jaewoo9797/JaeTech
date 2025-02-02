@@ -1,6 +1,7 @@
 package com.jaetech.comment.entity;
 
 import com.jaetech.article.entity.Article;
+import com.jaetech.common.BaseEntity;
 import com.jaetech.user.entity.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "comment")
-public class Comment {
+public class Comment extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")

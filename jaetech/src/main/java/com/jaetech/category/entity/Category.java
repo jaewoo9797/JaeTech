@@ -15,8 +15,9 @@ public class Category {
     @Column(name = "category_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 45)
     private String name;
 
+    @Column(length = 200)
     private String description;
 }

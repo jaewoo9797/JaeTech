@@ -1,0 +1,7 @@
+package com.jaetech.user.db;
+
+import com.jaetech.user.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+}

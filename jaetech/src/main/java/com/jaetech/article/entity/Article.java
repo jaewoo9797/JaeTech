@@ -12,9 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "article")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Article extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +40,10 @@ public class Article extends BaseEntity {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    public Article(String title, String content, User user, Category category) {
+        this.title = title;
+        this.content = content;
+        this.user = user;
+        this.category = category;
+    }
 }

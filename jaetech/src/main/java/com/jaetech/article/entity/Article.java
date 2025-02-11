@@ -41,4 +41,16 @@ public class Article extends BaseTimeEntity {
             throw new IllegalArgumentException();
         }
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }

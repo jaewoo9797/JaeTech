@@ -9,6 +9,6 @@ public record ArticleResponse(
 ) {
 
     public static ArticleResponse toDto(Article article) {
-        return new ArticleResponse(article.getId(), article.getTitle(), article.getTitle());
+        return new ArticleResponse(article.getId(), article.getTitle(), article.getContent());
     }
 }

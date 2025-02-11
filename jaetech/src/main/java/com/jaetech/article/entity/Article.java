@@ -10,12 +10,12 @@ import jakarta.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "article")
+@Table(name = "articles")
 public class Article extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "articles_id", updatable = false)
+    @Column(name = "article_id", updatable = false)
     private Long id;
 
     @Column(nullable = false, length = 55)

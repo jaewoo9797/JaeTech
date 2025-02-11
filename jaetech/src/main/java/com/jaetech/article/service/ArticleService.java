@@ -1,12 +1,14 @@
 package com.jaetech.article.service;
 
-import com.jaetech.article.dto.ArticleCreateRequest;
-import com.jaetech.article.dto.ArticleResponse;
 import com.jaetech.article.entity.Article;
 import com.jaetech.article.repository.ArticleRepository;
+import com.jaetech.common.error.ErrorCode;
+import com.jaetech.common.error.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 public class ArticleService {
 
     private final ArticleRepository articleRepository;
@@ -17,13 +19,19 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public Long addArticle(ArticleCreateRequest request) {
-        Article savedArticle = articleRepository.save(request.toArticle());
+    @Transactional
+    public Long addArticle(Article article) {
+        Article savedArticle = articleRepository.save(article);
         return savedArticle.getId();
     }
 
-    public ArticleResponse findArticleById(Long articleId) {
-        Article foundArticle = articleRepository.findById(articleId).orElseThrow(() -> new IllegalArgumentException());
-        return ArticleResponse.toDto(foundArticle);
+    public Article findArticleById(Long articleId) {
+        return articleRepository.findById(articleId)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.NOT_FOUND));
+    }
+
+    @Transactional
+    public void deleteArticleById(Long articleId) {
+        articleRepository.deleteById(articleId);
     }
 }

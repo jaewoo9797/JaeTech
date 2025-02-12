@@ -1,6 +1,8 @@
 package com.jaetech.article.entity;
 
+import com.jaetech.article.exception.ArticleInvalidException;
 import com.jaetech.common.BaseTimeEntity;
+import com.jaetech.common.error.ErrorCode;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,17 +30,24 @@ public class Article extends BaseTimeEntity {
     }
 
     public Article(String title, String content) {
+        validate(title, content);
+        this.title = title;
+        this.content = content;
+    }
+
+    public void update(String title, String content) {
+        validate(title, content);
         this.title = title;
         this.content = content;
     }
 
     private void validate(String title, String content) {
         if (Objects.isNull(title) || title.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new ArticleInvalidException(ErrorCode.ARTICLE_REQUIRED_TITLE);
         }
 
         if (Objects.isNull(content) || content.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new ArticleInvalidException(ErrorCode.ARTICLE_REQUIRED_CONTENT);
         }
     }
 
